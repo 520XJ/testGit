@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xmjf-admin:war">
+    <output-path>$PROJECT_DIR$/xmjf-admin/target</output-path>
+    <root id="archive" name="xmjf-admin.war">
+      <element id="artifact" artifact-name="xmjf-admin:war exploded" />
+    </root>
+  </artifact>
+</component>

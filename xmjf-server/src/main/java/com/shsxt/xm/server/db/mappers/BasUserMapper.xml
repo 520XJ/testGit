@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shsxt.xm.server.db.dao.BasUserDao">
+  <resultMap id="BaseResultMap" type="com.shsxt.xm.api.po.BasUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="referer" jdbcType="VARCHAR" property="referer" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="addip" jdbcType="VARCHAR" property="addip" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, salt, status, mobile, email, type, last_login_ip, last_login_time, 
+    referer, addtime, addip
+  </sql>
+  <select id="queryById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bas_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.shsxt.xm.api.po.BasUser" useGeneratedKeys="true" keyProperty="id">
+    insert into bas_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="referer != null">
+        referer,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="addip != null">
+        addip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="referer != null">
+        #{referer,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addip != null">
+        #{addip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.shsxt.xm.api.po.BasUser">
+    update bas_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="referer != null">
+        referer = #{referer,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addip != null">
+        addip = #{addip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="queryBasUserById" resultType="com.shsxt.xm.api.po.BasUser">
+       select id,mobile from bas_user where id=#{id}
+    </select>
+
+    <select id="queryBasUserByPhone" resultType="com.shsxt.xm.api.po.BasUser">
+        select id,userName,password,salt,mobile
+        from bas_user
+        where status=1 and mobile=#{phone}
+    </select>
+</mapper>
